@@ -6,12 +6,17 @@ class Objective(QWidget):
 
         buttonDelete = QPushButton()
         buttonDelete.setText("Delete")
+        buttonDelete.setProperty("style", "danger")
         buttonEdit = QPushButton()
         buttonEdit.setText("Edit")
+        buttonEdit.setProperty("style", "secondary")
         buttonFinish = QPushButton()
         buttonFinish.setText("Mark as done")
+        buttonFinish.setProperty("style", "action")
         buttonSet = QPushButton()
         buttonSet.setText("Set as current")
+        buttonSet.setProperty("style", "primary")
+
 
         layout = QHBoxLayout()
         self.setLayout(layout)
