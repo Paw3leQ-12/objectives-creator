@@ -1,10 +1,13 @@
 from PySide6.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QWidget
 from classes.objective import Objective
+import json
 app = QApplication([])
 
-with open("style.qss", "r") as styleSheet:
+with open("data/style.qss", "r") as styleSheet:
     app.setStyleSheet(styleSheet.read())
 
+with open("data/objectives.json", "r") as objectives:
+    objectives = json.load(objectives)
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -16,7 +19,8 @@ class MainWindow(QMainWindow):
         centralWidget = QWidget()
         centralWidget.setLayout(layout)
         self.setCentralWidget(centralWidget)
-        layout.addWidget(Objective("Finish this app", "Just finish this app"))
+        for objective in objectives.values():
+            layout.addWidget(Objective(objective["title"], objective["description"]))
 
 window = MainWindow()
 window.show()
